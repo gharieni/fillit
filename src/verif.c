@@ -34,7 +34,7 @@ int		get_nb_term(int fd, char *file)
 				ft_putstr("error");
 					return(-1);
 			}
-				//printf("%d/%d  ",i,(int)ft_strlen(nb_lines));
+			//printf("%d/%d  ",i,(int)ft_strlen(nb_lines));
 			ft_putstr(nb_lines);
 			if (ft_strcmp(&nb_lines[0], "\n") == 0)
 			{
