@@ -6,7 +6,7 @@
 /*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 19:39:24 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/28 18:41:06 by gmelek           ###   ########.fr       */
+/*   Updated: 2016/11/29 20:04:05 by gmelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 int		get_nb_term(int fd, char *file)
 {
 	int		i;
+	int		j;
 	int		nb_term;
 	char	nb_lines[BUFF_SIZE + 1];
 
 	nb_term = 1;
+	j = 1;
 	if ((fd = open(file, O_RDONLY)) == -1)
 	{
 		ft_putstr("not oppen");
@@ -29,24 +31,36 @@ int		get_nb_term(int fd, char *file)
 	}
 	while ((i = read(fd,&nb_lines,1)))
 	{
+			//verifier caractere valide
 			if(ft_strcmp(&nb_lines[0], ".") != 0 && ft_strcmp(&nb_lines[0], "#") != 0 && ft_strcmp(&nb_lines[0], "\n") != 0)
 			{
 				ft_putstr("error");
 					return(-1);
 			}
-				//printf("%d/%d  ",i,(int)ft_strlen(nb_lines));
 			ft_putstr(nb_lines);
 			if (ft_strcmp(&nb_lines[0], "\n") == 0)
 			{
+				j++;
 				nb_term++;
 			}
+			//verifier retour chqriot entre tetriminos
+			if(ft_strcmp(&nb_lines[0],"\n") != 0 && j % 5 == 0)
+			{
+				return(-1);
+			}
 	}
-	//printf("%d", nb_term);
-	if (nb_term > 1)
+	//compte nombre tetriminos
+	if (nb_term /4 - 1 > 3)
 	{
 		close(fd);
 		return((nb_term / 4) - 1);
 	}
+	if(nb_term > 1 )
+	{
+		close(fd);
+		return(nb_term / 4);
+	}
+		close(fd);
 	return (-1);
 }
 
