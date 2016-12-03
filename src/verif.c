@@ -6,7 +6,7 @@
 /*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 19:39:24 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/29 20:09:28 by gmelek           ###   ########.fr       */
+/*   Updated: 2016/12/03 14:52:15 by gmelek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		get_nb_term(int fd, char *file)
 	char	nb_lines[BUFF_SIZE + 1];
 
 	nb_term = 1;
-	j = 1;
+	j = 0;
 	if ((fd = open(file, O_RDONLY)) == -1)
 	{
 		ft_putstr("not oppen");
@@ -38,25 +38,43 @@ int		get_nb_term(int fd, char *file)
 					return(-1);
 			}
 			ft_putstr(nb_lines);
+			j++;
+			//compte les retour chariot
 			if (ft_strcmp(&nb_lines[0], "\n") == 0)
 			{
-				j++;
 				nb_term++;
+				//verivication 4 caractere pou chaque ligne 
+				if (j != 5 && ((nb_term - 1) % 5 != 0) )
+					return(-1);
+				j = 0;
 			}
-			//verifier retour chqriot entre tetriminos
-			if(ft_strcmp(&nb_lines[0],"\n") != 0 && j % 5 == 0)
+				
+			//verifier retour chariot entre tetriminos
+			if(ft_strcmp(&nb_lines[0],"\n") != 0 && nb_term % 5 == 0)
 			{
+				ft_putstr("error");
 				return(-1);
 			}
 	}
-	//compte nombre tetriminos
+	//compte nombre tetriminos mais je ne sais pas porquoi il devient unitile
 	if (nb_term /4 - 1 > 3)
 	{
+		/*if(!(1  ==  5 - (1 / (nb_term / 4 - 1))))
+			{
+				ft_putstr("error 1 ");
+				return(-1);
+			}*/
 		close(fd);
 		return((nb_term / 4) - 1);
 	}
-	if(nb_term > 1 )
+	//compte nombre tetriminos
+	if(nb_term > 4 )
 	{
+		if(!(nb_term   == (nb_term / 4) * 4 + (nb_term / 4)))
+		{
+			ft_putstr("error ");
+			return(-1);
+		}
 		close(fd);
 		return(nb_term / 4);
 	}
