@@ -20,7 +20,6 @@ int		get_nb_term(int fd, char *file)
 	int		i;
 	int		j;
 	int		k;
-	int		l;
 	int		m;
 	int		n;
 	int		nb_term;
@@ -30,7 +29,6 @@ int		get_nb_term(int fd, char *file)
 	m = 0;
 	n = 0;
 	k = 0;
-	l = 0;
 	nb_term = 1;
 	j = 0;
 	if ((fd = open(file, O_RDONLY)) == -1)
@@ -70,11 +68,13 @@ int		get_nb_term(int fd, char *file)
 			{
 				nb_term++;
 				n = 0;
-				if(ft_strcmp(&nb_lines[0],"\n") == 0 && nb_term % 5 != 0)
 				m ++;
 				//verivication 4 caractere pou chaque ligne 
 				if (j != 5 && ((nb_term - 1) % 5 != 0) )
+					{
+					close(fd);
 					return(-1);
+					}
 				j = 0;
 			}
 				
@@ -98,28 +98,25 @@ int		get_nb_term(int fd, char *file)
 			}
 	}
 		i = 0;
-		while (i < 12 )
+		
+		while (i < 19)
 		{
 			j = 0;
 			while(j < 4)
 				{
-					ft_putnbr(mat[i][j]);
+					printf("%d", mat[i][j]);
 					j++;
-				}
-			ft_putstr("\n");
-			if  (!(i%4))
-				ft_putstr("\n");
+			}
+			printf("\n");
+			//ft_putstr("\n");
 			i++;
 		}
-			//	printf("%d", mat[3][0]);
+		ft_putnbr(mat[3][1]);
+		ft_putnbr(mat[3][0]);
+	//	ft_putnbr(mat[3][2]);
 		//compte nombre tetriminos mais je ne sais pas porquoi il devient unitile
 	if (nb_term /4 - 1 > 3)
 	{
-		/*if(!(1  ==  5 - (1 / (nb_term / 4 - 1))))
-			{
-				ft_putstr("error 1 ");
-				return(-1);
-			}*/
 		close(fd);
 		return((nb_term / 4) - 1);
 	}
