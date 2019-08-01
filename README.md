@@ -88,3 +88,8 @@ here is how the program works:
 # Example
 
 <img src="https://user-images.githubusercontent.com/20647901/62280783-e096bc80-b44c-11e9-8852-5a76d635a1d0.png" width="400">
+
+##
+More information can be found on the [PDF].
+
+[PDF]: https://github.com/gharieni/fillit/blob/master/PDF/fillit.en.pdf
