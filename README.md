@@ -1,8 +1,8 @@
 # 42 fillit
  This is the story of a piece of Tetris, one little square and a dev walk into a bar...
 
+ https://github.com/gharieni/fillit/issues/1#issue-475565298
  
-
 ## Description
 
  Fillit is not about recoding Tetris, even if it’s still a variant of this game. This program will take a file as parameter, which contains a list of Tetriminos, and arrange them in order to create the smallest square possible.
@@ -87,3 +87,4 @@ here is how the program works:
 
 # Example
 
+https://github.com/gharieni/fillit/issues/2#issue-475565574
