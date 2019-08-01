@@ -87,4 +87,4 @@ here is how the program works:
 
 # Example
 
-<img src="https://user-images.githubusercontent.com/20647901/62280783-e096bc80-b44c-11e9-8852-5a76d635a1d0.png" width"200">
+<img src="https://user-images.githubusercontent.com/20647901/62280783-e096bc80-b44c-11e9-8852-5a76d635a1d0.png" width="200">
