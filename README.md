@@ -1,7 +1,7 @@
 # 42 fillit
  This is the story of a piece of Tetris, one little square and a dev walk into a bar...
 
- https://github.com/gharieni/fillit/issues/1#issue-475565298
+<img src="https://user-images.githubusercontent.com/20647901/62280741-cd83ec80-b44c-11e9-814a-654ebf31ca99.jpg">
  
 ## Description
 
@@ -87,4 +87,4 @@ here is how the program works:
 
 # Example
 
-https://github.com/gharieni/fillit/issues/2#issue-475565574
+<img src="https://user-images.githubusercontent.com/20647901/62280783-e096bc80-b44c-11e9-8852-5a76d635a1d0.png">
