@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 15:46:33 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/15 15:48:34 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/02 15:09:16 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/02 15:09:17 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 void	ft_putendl(char const *s)
 {

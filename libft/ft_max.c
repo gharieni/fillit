@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_man.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 15:21:10 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/27 15:27:55 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/22 16:24:50 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/22 16:24:52 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-void	ft_putstr(char const *str)
+int		ft_max(int first, int second)
 {
-	ft_putstr_fd(str, 1);
+	return (first > second ? first : second);
 }

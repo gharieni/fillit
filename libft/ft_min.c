@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 17:03:23 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/15 17:04:28 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/22 16:23:22 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/22 16:23:23 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strrev(char *s)
+int		ft_min(int first, int second)
 {
-	char *s_end;
-	char c;
-
-	s_end = s + ft_strlen(s) - 1;
-	while (s < s_end)
-	{
-		c = *s;
-		*s++ = *s_end;
-		*s_end-- = c;
-	}
+	return (first < second ? first : second);
 }

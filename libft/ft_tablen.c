@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 15:23:03 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/27 15:28:44 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/24 12:43:32 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/24 12:44:11 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 
-void	ft_putstr_fd(char const *str, int fd)
+int		ft_tablen(void **tab)
 {
-	while (*str)
-		ft_putchar_fd(*str++, fd);
+	int		count;
+
+	if (!tab)
+		return (0);
+	count = 0;
+	while (tab[count])
+		count++;
+	return (count);
 }

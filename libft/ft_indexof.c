@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_indexof.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 15:02:00 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/27 15:16:15 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/09 10:37:57 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/09 10:37:58 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+int		ft_indexof(char *str, char to_find)
 {
-	write(fd, &c, 1);
+	int		count;
+
+	count = 0;
+	while (str && str[count] && str[count] != to_find)
+		count++;
+	return ((str && (str[count] || !to_find)) ? count : -1);
 }

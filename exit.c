@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 15:26:18 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/27 20:07:43 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/24 13:01:46 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/24 13:02:01 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "fillit.h"
 
-size_t		ft_strlen(const char *str)
+void	exit_func(char *str, void **tab, void **to_fill)
 {
-	size_t size;
+	if (ft_strcmp(str, "succes"))
+		write(1, "error\n", 6);
+	ft_free_tab(&tab);
+	ft_free_tab(&to_fill);
+	exit(0);
+}
 
-	size = 0;
-	while (*str != '\n')
-	{
-		size++;
-		str = str + 1;
-	}
-	size++;
-	return (size);
+void	usage(void)
+{
+	ft_putendl("usage: fillit source_file");
 }

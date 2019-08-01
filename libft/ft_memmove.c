@@ -3,36 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/14 11:55:40 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/20 15:25:48 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/03 16:09:13 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/03 16:09:15 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy2(void *s1, const void *s2, size_t n)
+static void	*ft_memrcpy(void *dst, const void *src, size_t n)
 {
-	char	*c1;
-	char	*c2;
-
-	if (n == 0 || s1 == s2)
-		return (s1);
-	c1 = (char *)s1;
-	c2 = (char *)s2;
-	while (n--)
-	{
-		c1[n] = c2[n];
-	}
-	return (s1);
+	while (n-- > 0)
+		*(unsigned char*)&dst[n] = *(unsigned char*)&src[n];
+	return (dst);
 }
 
-void	*ft_memmove(void *s1, const void *s2, size_t n)
+void		*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (s1 < s2)
-		return (ft_memcpy(s1, s2, n));
-	if (s1 > s2)
-		return (ft_memcpy2(s1, s2, n));
-	return (s1);
+	if (len > 0)
+	{
+		if (dst - src < (long)len && dst - src >= 0)
+			ft_memrcpy(dst, src, len);
+		else
+			ft_memcpy(dst, src, len);
+	}
+	return (dst);
 }

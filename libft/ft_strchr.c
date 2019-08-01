@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/11 20:09:54 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/18 08:49:32 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/03 15:10:47 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/03 15:10:49 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,5 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (1)
-	{
-		if (*s == c)
-			return ((char *)s);
-		else if (*s++ == '\0')
-			return (NULL);
-	}
+	return ((char *)ft_memchr(s, c, ft_strlen(s) + 1));
 }

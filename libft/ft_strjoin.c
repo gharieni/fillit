@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 16:50:33 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/15 16:51:19 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/02 15:21:55 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/02 15:21:57 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *new;
-	char *newit;
+	int		count_s1;
+	int		count_s2;
+	char	*to_return;
+	int		length;
 
-	if (s1 == NULL && s2 == NULL)
-		return (ft_strnew(0));
-	else if (s1 == NULL)
-		return (ft_strdup(s2));
-	else if (s2 == NULL)
-		return (ft_strdup(s1));
-	new = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
-	if (new == NULL)
+	if (!s1 || !s2)
 		return (NULL);
-	newit = new;
-	while (*s1 != '\0')
-		*newit++ = *s1++;
-	while (*s2 != '\0')
-		*newit++ = *s2++;
-	*newit = '\0';
-	return (new);
+	length = ft_strlen((char*)s1) + ft_strlen((char*)s2);
+	to_return = ft_strnew(length);
+	if (to_return)
+	{
+		count_s1 = -1;
+		while (s1[++count_s1])
+			to_return[count_s1] = s1[count_s1];
+		count_s2 = -1;
+		while (s2[++count_s2])
+			to_return[count_s1 + count_s2] = s2[count_s2];
+	}
+	return (to_return);
 }

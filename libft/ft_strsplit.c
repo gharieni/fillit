@@ -3,79 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 15:55:31 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/17 10:10:51 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/03 13:12:53 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/03 13:12:57 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-static const char		*ft_str_find_next(const char *str, char c, int skip)
+static int	nb_of_str(char const *s, char c, int first)
 {
-	if (skip)
-		while (*str != '\0' && *str == c)
-			str++;
+	if (!*s)
+		return (0);
+	else if (*s == c)
+		return (nb_of_str(s + 1, c, 0));
+	else if (first)
+		return (1 + nb_of_str(s + 1, c, 0));
 	else
-		while (*str != '\0' && *str != c)
-			str++;
-	return (str);
+		return (nb_of_str(s + 1, c, 0) + ((*(s - 1) == c) ? 1 : 0));
 }
 
-static int				ft_str_count_splits(const char *str, char seps)
+static int	count_length(char const *str, char c)
 {
-	int i;
+	return ((*str != c && *str) ? 1 + count_length(str + 1, c) : 0);
+}
 
-	i = 0;
-	while (*str != '\0')
+char		**ft_strsplit(char const *s, char c)
+{
+	char	**to_return;
+	int		str_count;
+	int		in_str_count;
+	int		count;
+
+	to_return = s ? (char**)malloc((sizeof(char*)) *
+		(nb_of_str(s, c, 1) + 1)) : NULL;
+	if (to_return)
 	{
-		str = ft_str_find_next(str, seps, 1);
-		if (*str != '\0')
+		count = 0;
+		str_count = -1;
+		while (s[count])
 		{
-			i++;
-			str = ft_str_find_next(str, seps, 0);
+			in_str_count = 0;
+			if (s[count] != c && ((to_return[++str_count] =
+		ft_strnew(count_length(&s[count], c))) || 1) && to_return[str_count])
+				while (s[count] != c && s[count])
+					to_return[str_count][in_str_count++] = s[count++];
+			else
+				count++;
 		}
+		to_return[++str_count] = NULL;
 	}
-	return (i);
-}
-
-static char				**ft_tabledel(char **ret, int len)
-{
-	int i;
-
-	i = 0;
-	while (i < len)
-		free(ret[i]);
-	free(ret);
-	return (NULL);
-}
-
-char					**ft_strsplit(char const *str, char c)
-{
-	char		**ret;
-	int			i;
-	const char	*next;
-
-	if (str == NULL)
-		return (NULL);
-	ret = (char**)malloc(sizeof(char*) * (ft_str_count_splits(str, c) + 1));
-	if (ret == NULL)
-		return (NULL);
-	i = 0;
-	while (*str != '\0')
-	{
-		str = ft_str_find_next(str, c, 1);
-		if (*str != '\0')
-		{
-			next = ft_str_find_next(str, c, 0);
-			ret[i] = ft_strsub(str, 0, next - str);
-			if (ret[i] == NULL)
-				return (ft_tabledel(ret, i));
-			i++;
-			str = next;
-		}
-	}
-	ret[i] = 0;
-	return (ret);
+	return (to_return);
 }

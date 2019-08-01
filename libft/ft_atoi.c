@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/12 18:28:18 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/18 15:26:45 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/03 16:34:37 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/08 12:57:32 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 int		ft_atoi(const char *str)
 {
-	int i;
-	int result;
-	int sign;
+	long	int_to_return;
+	int		sign;
 
-	result = 0;
-	sign = 0;
-	i = 0;
-	while ((str[i] == '\n') || (str[i] == '\t') ||
-			(str[i] == '\v') || (str[i] == ' ') ||
-			(str[i] == '\f') || (str[i] == '\r'))
-		i++;
-	if (str[i] == '-')
-		sign = 1;
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	int_to_return = 0;
+	while (*str == ' ' || *str == '\t' || *str == '\n' ||
+		*str == '\r' || *str == '\v' || *str == '\f')
+		str++;
+	sign = 1;
+	if (*str == '-')
 	{
-		result = (result * 10) + (str[i] - '0');
-		i++;
+		str++;
+		sign = -1;
 	}
-	if (sign == 1)
-		return (-result);
-	else
-		return (result);
+	else if (*str == '+')
+		str++;
+	while (*str <= '9' && *str >= '0')
+	{
+		if (int_to_return > 922337203685477581 || (int_to_return
+	== 922337203685477580 && (*str - '0') > 6 + ((sign > 0) ? 0 : 1)))
+			return ((sign > 0) ? -1 : 0);
+		int_to_return = int_to_return * 10 + *str - '0';
+		str++;
+	}
+	return (sign * int_to_return);
 }

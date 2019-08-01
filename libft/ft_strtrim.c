@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 16:53:30 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/15 16:55:23 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/02 15:33:21 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/02 15:33:23 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 char	*ft_strtrim(char const *s)
 {
-	char const *s_end;
+	int		length;
+	int		offset;
 
-	if (s == NULL)
-		return (NULL);
-	while (*s == ' ' || *s == '\t' || *s == '\n')
-		s++;
-	if (*s == '\0')
+	if (!s)
+		return ((char*)s);
+	offset = 0;
+	while (s[offset] == ' ' || s[offset] == '\t' || s[offset] == '\n')
+		offset++;
+	if (!s[offset])
 		return (ft_strnew(0));
-	s_end = s + ft_strlen(s) - 1;
-	while (*s_end == ' ' || *s_end == '\t' || *s_end == '\n')
-		s_end--;
-	return (ft_strsub(s, 0, s_end - s + 1));
+	length = ft_strlen((char*)s) - offset - 1;
+	while (s[length + offset] == ' ' || s[length + offset] == '\t'
+		|| s[length + offset] == '\n')
+		length--;
+	return (ft_strsub(s, offset, length + 1));
 }

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 15:19:57 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/27 17:22:59 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/24 12:46:18 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/24 12:46:19 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int		ft_strcmp(const char *s1, const char *s2)
+void	ft_free_tab(void ***tab)
 {
-	while (*s1 && *s1 == *s2)
+	int count;
+
+	if (!tab || !*tab)
+		return ;
+	count = 0;
+	while ((unsigned long)(*tab)[count] % 0x100000)
 	{
-		s1++;
-		s2++;
+		ft_memdel(&(*tab)[count++]);
 	}
-	return ((unsigned char)*s1 - (unsigned char)*s2);
+	free(*tab);
+	*tab = NULL;
 }

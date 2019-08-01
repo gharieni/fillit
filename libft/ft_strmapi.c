@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hvromman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 16:13:19 by gmelek            #+#    #+#             */
-/*   Updated: 2016/11/20 17:21:53 by gmelek           ###   ########.fr       */
+/*   Created: 2018/10/02 15:13:17 by hvromman          #+#    #+#             */
+/*   Updated: 2018/10/02 15:13:22 by hvromman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*str;
-	unsigned int	i;
+	unsigned int	count;
+	unsigned int	length;
+	char			*to_return;
 
-	if (!s || !f)
+	if (!s)
 		return (NULL);
-	str = (char*)malloc(sizeof(*str) * (ft_strlen(s) + 1));
-	if (str)
+	length = ft_strlen((char*)s);
+	to_return = (char*)malloc(sizeof(char) * (length + 1));
+	if (to_return)
 	{
-		i = 0;
-		while (s[i])
-		{
-			str[i] = f(i, s[i]);
-			i++;
-		}
-		str[i] = '\0';
+		count = -1;
+		while (++count < length)
+			to_return[count] = f(count, s[count]);
+		to_return[count] = 0;
 	}
-	return (str);
+	return (to_return);
 }
